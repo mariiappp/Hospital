@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Hospital.Console/Hospital.Console.csproj" />
+  <Project Path="Hospital.Model/Hospital.Model.csproj" />
+  <Project Path="Hospital.WinForms/Hospital.WinForms.csproj" />
+</Solution>
