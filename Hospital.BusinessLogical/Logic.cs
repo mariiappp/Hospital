@@ -15,6 +15,15 @@ namespace Hospital.BusinessLogical
         /// <param name="doctor">Врач, которого нужно добавить</param>
         public void CreateDoctor(Doctor doctor)
         {
+            if (doctors.Count > 0)
+            {
+                doctor.Id = doctors.Max(d => d.Id) + 1;
+            }
+            else
+            {
+                doctor.Id = 1;
+            }
+
             doctors.Add(doctor);
         }
 
