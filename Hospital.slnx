@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Hospital.BusinessLogical/Hospital.BusinessLogical.csproj" Id="e9c81761-5f14-4805-88ef-6ab0471723c2" />
   <Project Path="Hospital.Console/Hospital.Console.csproj" />
   <Project Path="Hospital.Model/Hospital.Model.csproj" />
   <Project Path="Hospital.WinForms/Hospital.WinForms.csproj" />
