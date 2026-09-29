@@ -1,4 +1,4 @@
-﻿using Hospital.BusinessLogical;
+﻿
 using Hospital.Model;
 
 namespace Hospital.Console
@@ -65,14 +65,11 @@ namespace Hospital.Console
                 }
             }
         }
-
         /// <summary>
-        /// Отображает список всех врачей, зарегистрированных в системе,
-        /// в виде отформатированной таблицы
+        /// Выводит список всех врачей без ожидания нажатия клавиши.
         /// </summary>
-        static void ShowAllDoctors()
+        static bool DisplayDoctors()
         {
-            System.Console.Clear();
             System.Console.WriteLine("=== СПИСОК ВРАЧЕЙ ===");
             System.Console.WriteLine();
 
@@ -81,17 +78,29 @@ namespace Hospital.Console
             if (doctors.Count == 0)
             {
                 System.Console.WriteLine("Список врачей пуст.");
+                return false;
             }
-            else
-            {
-                System.Console.WriteLine($"{"ID",-5} {"ФИО",-25} {"Специализация",-15} {"Стаж",-6} {"Телефон",-15} {"Кабинет"}");
-                System.Console.WriteLine(new string('-', 90));
 
-                foreach (var doctor in doctors)
-                {
-                    System.Console.WriteLine($"{doctor.Id,-5} {doctor.FullName,-25} {doctor.Specialization,-15} {doctor.Experience,-6} {doctor.Phone,-15} {doctor.Office}");
-                }
+            System.Console.WriteLine($"{"ID",-5} {"ФИО",-25} {"Специализация",-15} {"Стаж",-6} {"Телефон",-15} {"Кабинет"}");
+            System.Console.WriteLine(new string('-', 90));
+
+            foreach (var doctor in doctors)
+            {
+                System.Console.WriteLine($"{doctor.Id,-5} {doctor.FullName,-25} {doctor.Specialization,-15} {doctor.Experience,-6} {doctor.Phone,-15} {doctor.Office}");
             }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Отображает список всех врачей, зарегистрированных в системе,
+        /// в виде отформатированной таблицы
+        /// </summary>
+        static void ShowAllDoctors()
+        {
+            System.Console.Clear();
+
+            DisplayDoctors();
 
             System.Console.WriteLine();
             System.Console.WriteLine("Нажмите любую клавишу для возврата в меню...");
@@ -125,26 +134,38 @@ namespace Hospital.Console
             string? specialization;
             while (true)
             {
-                System.Console.Write("Специализация (Кардиолог/Стоматолог/Терапевт/Хирург/Невролог/Педиатр/Офтальмолог/Дерматолог): ");
-                specialization = System.Console.ReadLine();
+                System.Console.WriteLine("Выберите специализацию:");
+                System.Console.WriteLine("1. Кардиолог");
+                System.Console.WriteLine("2. Стоматолог");
+                System.Console.WriteLine("3. Терапевт");
+                System.Console.WriteLine("4. Хирург");
+                System.Console.WriteLine("5. Невролог");
+                System.Console.WriteLine("6. Педиатр");
+                System.Console.WriteLine("7. Офтальмолог");
+                System.Console.WriteLine("8. Дерматолог");
 
-                if (validSpecializations.Contains(specialization, StringComparer.OrdinalIgnoreCase))
+                int choice = ReadInt("Введите номер специализации: ");
+
+                string[] specializations =
                 {
-                    specialization = validSpecializations.First(s =>
-                        s.Equals(specialization, StringComparison.OrdinalIgnoreCase));
+                    "Кардиолог",
+                    "Стоматолог",
+                    "Терапевт",
+                    "Хирург",
+                    "Невролог",
+                    "Педиатр",
+                    "Офтальмолог",
+                    "Дерматолог"
+                };
+
+                if (choice >= 1 && choice <= specializations.Length)
+                {
+                    specialization = specializations[choice - 1];
                     break;
                 }
-                else
-                {
-                    System.Console.WriteLine("Ошибка: неверная специализация!");
-                    System.Console.WriteLine("Доступные специализации:");
-                    foreach (var spec in validSpecializations)
-                    {
-                        System.Console.WriteLine($"  - {spec}");
-                    }
-                    System.Console.WriteLine("Попробуйте снова.");
-                    System.Console.WriteLine();
-                }
+
+                System.Console.WriteLine("Ошибка: выберите номер от 1 до 8.");
+                System.Console.WriteLine();
             }
 
             int experience = ReadInt("Стаж (лет): ");
@@ -182,7 +203,7 @@ namespace Hospital.Console
             System.Console.WriteLine("=== ИЗМЕНЕНИЕ ДАННЫХ ВРАЧА ===");
             System.Console.WriteLine();
 
-            ShowAllDoctors();
+            DisplayDoctors();
 
             if (_logic.GetDoctors().Count == 0)
                 return;
@@ -209,10 +230,34 @@ namespace Hospital.Console
             if (!string.IsNullOrWhiteSpace(fullName))
                 doctor.FullName = fullName;
 
-            System.Console.Write("Новая специализация (оставьте пустым, чтобы не менять): ");
-            string? specialization = System.Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(specialization))
-                doctor.Specialization = specialization;
+            System.Console.WriteLine("Выберите новую специализацию:");
+            System.Console.WriteLine("1. Кардиолог");
+            System.Console.WriteLine("2. Стоматолог");
+            System.Console.WriteLine("3. Терапевт");
+            System.Console.WriteLine("4. Хирург");
+            System.Console.WriteLine("5. Невролог");
+            System.Console.WriteLine("6. Педиатр");
+            System.Console.WriteLine("7. Офтальмолог");
+            System.Console.WriteLine("8. Дерматолог");
+
+            int specializationChoice = ReadInt("Введите номер специализации: ");
+
+            string[] specializations =
+                    {
+                    "Кардиолог",
+                    "Стоматолог",
+                    "Терапевт",
+                    "Хирург",
+                    "Невролог",
+                    "Педиатр",
+                    "Офтальмолог",
+                    "Дерматолог"
+                    };
+
+            if (specializationChoice >= 1 && specializationChoice <= specializations.Length)
+                doctor.Specialization = specializations[specializationChoice - 1];
+            else
+                System.Console.WriteLine("Ошибка: выберите номер от 1 до 8.");
 
             System.Console.Write("Новый стаж (0 - не менять): ");
             int experience = ReadInt("");
@@ -253,7 +298,7 @@ namespace Hospital.Console
             System.Console.WriteLine("=== УДАЛЕНИЕ ВРАЧА ===");
             System.Console.WriteLine();
 
-            ShowAllDoctors();
+            DisplayDoctors();
 
             if (_logic.GetDoctors().Count == 0)
                 return;
