@@ -1,5 +1,6 @@
 ﻿
 using Hospital.Model;
+using Hospital.BusinessLogical;
 
 namespace Hospital.Console
 {

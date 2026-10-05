@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hospital.Model
 {
-    public class Doctor
+    public class Doctor: IDomainObject
     {
         public int Id {  get; set; }
         public string FullName { get; set; }

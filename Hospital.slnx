@@ -1,7 +1,12 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="HospitalDatabase.mdf" />
+  </Folder>
+  <Project Path="Hospital.BusinessLogical/Hospital.BusinessLogical.csproj" Id="35a2e296-88b2-46d9-b10c-e4e1da7af020" />
   <Project Path="Hospital.Console/Hospital.Console.csproj">
     <BuildDependency Project="Hospital.Model/Hospital.Model.csproj" />
   </Project>
+  <Project Path="Hospital.DataAccessLayer/Hospital.DataAccessLayer.csproj" Id="082e45a7-4c49-4fca-a57d-385737d70c9d" />
   <Project Path="Hospital.Model/Hospital.Model.csproj" />
   <Project Path="Hospital.WinForms/Hospital.WinForms.csproj">
     <BuildDependency Project="Hospital.Model/Hospital.Model.csproj" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Hospital.Model;
 
-namespace Hospital.BusinessLogical
+namespace Hospital.BusinessLogical 
 {
     public class Logic
     {
@@ -31,9 +31,9 @@ namespace Hospital.BusinessLogical
         /// Возвращает список всех врачей, которые есть в системе
         /// </summary>
         /// <returns>Список врачей</returns>
-        public List<Doctor> GetDoctors() 
-        { 
-            return doctors; 
+        public List<Doctor> GetDoctors()
+        {
+            return doctors;
         }
 
         /// <summary>
@@ -44,10 +44,11 @@ namespace Hospital.BusinessLogical
         /// true, если врач найден и удален
         /// false, если врач не найден
         /// </returns>
-        public bool DeleteDoctor(int id) 
+        public bool DeleteDoctor(int id)
         {
             Doctor doctor = doctors.FirstOrDefault(x => x.Id == id);
-            if (doctor == null) {
+            if (doctor == null)
+            {
                 return false;
             }
             doctors.Remove(doctor);
@@ -96,7 +97,7 @@ namespace Hospital.BusinessLogical
         public List<Doctor> GetDoctorsWithExperience(int minExperience)
         {
             return doctors
-                .Where(x =>  x.Experience >= minExperience)
+                .Where(x => x.Experience >= minExperience)
                 .ToList();
         }
     }

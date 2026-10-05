@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hospital.BusinessLogical\Hospital.BusinessLogical.csproj" />
     <ProjectReference Include="..\Hospital.Model\Hospital.Model.csproj" />
+    <ProjectReference Include="..\Hospital.DataAccessLayer\Hospital.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>
