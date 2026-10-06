@@ -176,17 +176,12 @@ namespace Hospital.Console
 
             int office = ReadInt("Номер кабинета: ");
 
-            var doctor = new Doctor
-            {
-                Id = _logic.GetDoctors().Count > 0 ? _logic.GetDoctors().Max(d => d.Id) + 1 : 1,
-                FullName = fullName ?? "",
-                Specialization = specialization ?? "",
-                Experience = experience,
-                Phone = phone ?? "",
-                Office = office
-            };
-
-            _logic.CreateDoctor(doctor);
+            _logic.CreateDoctor(
+                fullName ?? "",
+                specialization ?? "",
+                experience,
+                phone ?? "",
+                office);
 
             System.Console.WriteLine();
             System.Console.WriteLine("Врач успешно добавлен!");

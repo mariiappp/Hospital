@@ -9,6 +9,6 @@ namespace Hospital.DataAccessLayer
     public static class DatabaseSettings
     {
         public const string ConnectionString =
-            "YOUR_CONNECTION_STRING";
+            "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Гордей\\Documents\\GitHub\\Hospital\\Hospital.DataAccessLayer\\DatabaseHospital.mdf;Integrated Security=True";
     }
 }

@@ -146,8 +146,12 @@ namespace Hospital.WinForms
             if (!ValidateInput())
                 return;
 
-            var doctor = GetDoctorFromInput();
-            _logic.CreateDoctor(doctor);
+            _logic.CreateDoctor(
+                textBoxFullName.Text.Trim(),
+                comboBoxSpecialization.SelectedItem?.ToString() ?? "",
+                int.Parse(textBoxExperience.Text),
+                textBoxPhone.Text.Trim(),
+                int.Parse(textBoxOffice.Text));
             RefreshDataGridView();
             ClearInputFields();
             MessageBox.Show("Врач успешно добавлен", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
