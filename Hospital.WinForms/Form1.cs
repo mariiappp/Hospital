@@ -14,10 +14,12 @@ namespace Hospital.WinForms
         private Doctor _currentDoctor;
         private bool _isEditMode = false;
 
-        public Form1()
+        public Form1(Logic logic)
         {
             InitializeComponent();
-            _logic = new Logic();
+
+            _logic = logic;
+
             InitializeSpecializations();
             RefreshDataGridView();
             dataGridViewDoctors.Visible = false;

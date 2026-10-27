@@ -1,17 +1,23 @@
+
+using Hospital.BusinessLogical;
+using Ninject;
+
 namespace Hospital.WinForms
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            using var kernel = new StandardKernel(
+                new SimpleConfigModule());
+
+            var logic = kernel.Get<Logic>();
+
+            Application.Run(new Form1(logic));
         }
     }
 }

@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Hospital.Model;
 using Hospital.DataAccessLayer;
-using Hospital.DataAccessLayer.Dapper;
 
 namespace Hospital.BusinessLogical
 {
     public class Logic
     {
         private readonly IRepository<Doctor> repository;
-
-        public Logic()
-        {
-            repository = new DapperRepository<Doctor>();
-        }
 
         public Logic(IRepository<Doctor> repository)
         {

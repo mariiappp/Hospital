@@ -1,4 +1,4 @@
-﻿
+﻿using Ninject;
 using Hospital.Model;
 using Hospital.BusinessLogical;
 
@@ -9,7 +9,7 @@ namespace Hospital.Console
         /// <summary>
         /// Экземпляр бизнес-логики для работы с врачами
         /// </summary>
-        static Logic _logic = new Logic();
+        static Logic _logic = null!;
 
         /// <summary>
         /// Точка входа в консольное приложение
@@ -19,7 +19,8 @@ namespace Hospital.Console
         static void Main(string[] args)
         {
             System.Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+            using var kernel = new StandardKernel(new SimpleConfigModule());
+            _logic = kernel.Get<Logic>();
             while (true)
             {
                 System.Console.Clear();
